@@ -23,4 +23,5 @@ fn main() {
     journey::example::string::string_demo();
     journey::example::generic::generic_demo();
     journey::example::traits::demo();
+    journey::example::closure::demo();
 }

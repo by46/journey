@@ -15,6 +15,19 @@ trait ApproxEqual {
     fn approx_equal(&self, other: &Self) -> bool;
 }
 
+trait foo {
+    fn is_valid(&self) -> bool;
+    fn is_invalid(&self) -> bool { !self.is_valid() }
+}
+
+trait Foo {
+    fn foo(&self);
+}
+
+trait FooBar: Foo {
+    fn foobar(&self);
+}
+
 struct Circle {
     x: f64,
     y: f64,
@@ -33,6 +46,13 @@ struct Rectangle<T> {
     width: T,
     height: T,
 }
+
+struct UseDefault;
+
+struct OverrideDefault;
+
+#[derive(Debug)]
+struct Baz;
 
 impl HasArea for Circle {
     fn area(&self) -> f64 {
@@ -82,6 +102,36 @@ fn print_area<T: HasArea + Display>(shape: T) {
     println!("This shape has an area of {}", shape.area())
 }
 
+impl foo for UseDefault {
+    fn is_valid(&self) -> bool {
+        println!("call UseDefault.is_valid");
+        true
+    }
+}
+
+impl foo for OverrideDefault {
+    fn is_valid(&self) -> bool {
+        println!("call OverrideDefault.is_valid");
+        true
+    }
+    fn is_invalid(&self) -> bool {
+        println!("call OverrideDefault.is_invalid");
+        true
+    }
+}
+
+impl Foo for Baz {
+    fn foo(&self) {
+        println!("foot")
+    }
+}
+
+impl FooBar for Baz {
+    fn foobar(&self) {
+        println!("foobar")
+    }
+}
+
 pub fn demo() {
     common::line();
     let c = Circle {
@@ -92,7 +142,7 @@ pub fn demo() {
     let s = Square {
         x: 0.0f64,
         y: 0.0f64,
-        side: 1.0f64
+        side: 1.0f64,
     };
     print_area(c);
     print_area(s);
@@ -109,7 +159,15 @@ pub fn demo() {
     assert!(!r.is_square());
     println!("{}", 1.0.approx_equal(&1.0000001));
 
-    let mut f = std::fs::File::create("foo.txt").ok().expect("Couldn’t create foo.txt");
+    let mut f = std::fs::File::create("foo.txt").ok().expect("Could not create foo.txt");
     let buf = b"whatever";
     let result = f.write(buf);
+
+    let default = UseDefault;
+    default.is_valid();
+    let ride = OverrideDefault;
+    ride.is_valid();
+
+    let baz = Baz;
+    println!("{:?}", baz)
 }

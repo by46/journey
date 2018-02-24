@@ -1,0 +1,7 @@
+[package]
+name = "journey"
+version = "0.0.1"
+authors = ["benjamin yan <benjamin.c.yan@newegg.com>"]
+
+[dependencies]
+rand = "=0.3.22"

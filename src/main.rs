@@ -27,4 +27,5 @@ fn main() {
     journey::example::drop::demo();
     journey::example::trait_object::demo();
     journey::example::func::demo();
+    journey::example::association::demo();
 }

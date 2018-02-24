@@ -9,3 +9,4 @@ pub mod traits;
 pub mod drop;
 pub mod trait_object;
 pub mod func;
+pub mod association;

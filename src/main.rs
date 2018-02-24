@@ -24,4 +24,7 @@ fn main() {
     journey::example::generic::generic_demo();
     journey::example::traits::demo();
     journey::example::closure::demo();
+    journey::example::drop::demo();
+    journey::example::trait_object::demo();
+    journey::example::func::demo();
 }

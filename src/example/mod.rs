@@ -6,3 +6,6 @@ pub mod string;
 mod common;
 pub mod generic;
 pub mod traits;
+pub mod drop;
+pub mod trait_object;
+pub mod func;

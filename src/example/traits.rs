@@ -161,7 +161,7 @@ pub fn demo() {
 
     let mut f = std::fs::File::create("foo.txt").ok().expect("Could not create foo.txt");
     let buf = b"whatever";
-    let result = f.write(buf);
+    let _result = f.write(buf);
 
     let default = UseDefault;
     default.is_valid();

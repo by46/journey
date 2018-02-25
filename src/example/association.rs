@@ -33,5 +33,5 @@ pub fn demo() {
     common::line();
 
     let graph = MyGraph;
-    let obj = Box::new(graph) as Box<Graph<N=Node, E=Edge>>;
+    let _obj = Box::new(graph) as Box<Graph<N=Node, E=Edge>>;
 }

@@ -20,8 +20,8 @@ impl Drop for Firework {
 
 pub fn demo() {
     common::line();
-    let d = HasDrop;
+    let _d = HasDrop;
 
-    let firecracker = Firework { strength: 1 };
-    let tnt = Firework { strength: 100 };
+    let _firecracker = Firework { strength: 1 };
+    let _tnt = Firework { strength: 100 };
 }

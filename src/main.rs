@@ -30,4 +30,6 @@ fn main() {
     journey::example::association::demo();
     journey::example::overload::demo();
     journey::example::pointer::demo();
+
+    journey::advance::heap::demo();
 }

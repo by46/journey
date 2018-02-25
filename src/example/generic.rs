@@ -16,15 +16,17 @@ impl<T> Point<T> where T: Debug {
     }
 }
 
-fn takes_anything<T>(x: T) {}
+fn takes_anything<T>(x: T) where T: Debug {
+    println!("{:?}", x)
+}
 
 pub fn generic_demo() {
     common::line();
 
     takes_anything(0);
 
-    let x: Option<i32> = Some(6);
-    let y: Option<f64> = Some(5.0f64);
+    let _x: Option<i32> = Some(6);
+    let _y: Option<f64> = Some(5.0f64);
 
     let mut int_origin = Point { x: 1, y: 2 };
     let float_origin = Point { x: 0.0, y: 0.0 };
@@ -32,5 +34,4 @@ pub fn generic_demo() {
     float_origin.display();
     int_origin.swap();
     int_origin.display();
-
 }

@@ -2,7 +2,6 @@ use std::ops::Add;
 use std::ops::Mul;
 use std::ops::Deref;
 use std::fmt::Write;
-use std::result::Result;
 
 use example::common;
 

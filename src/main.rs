@@ -28,4 +28,6 @@ fn main() {
     journey::example::trait_object::demo();
     journey::example::func::demo();
     journey::example::association::demo();
+    journey::example::overload::demo();
+    journey::example::pointer::demo();
 }

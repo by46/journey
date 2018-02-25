@@ -32,4 +32,6 @@ fn main() {
     journey::example::pointer::demo();
 
     journey::advance::heap::demo();
+    journey::advance::concurrency::demo();
+    journey::advance::error::demo();
 }

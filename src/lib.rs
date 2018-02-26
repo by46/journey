@@ -3,6 +3,7 @@ extern crate getopts;
 extern crate serde_derive;
 extern crate serde;
 extern crate serde_json;
+extern crate libc;
 
 pub mod example;
 pub mod advance;

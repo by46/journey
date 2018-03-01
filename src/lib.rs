@@ -11,6 +11,7 @@ extern crate time;
 pub mod example;
 pub mod advance;
 pub mod http;
+pub mod newegg;
 #[cfg(test)]
 mod tests;
 

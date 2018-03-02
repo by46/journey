@@ -54,9 +54,9 @@ fn hello_world(_: &mut Request) -> IronResult<Response> {
 }
 
 pub fn demo() {
-    let large = Iron::new(Logger::new(LoggerMode::Large))
-        .around(Box::new(hello_world));
+    let large = Iron::new(Logger::new(LoggerMode::Large)
+        .around(Box::new(hello_world)));
 
-    let _large_listeing = large.http("localhost:4000").unwrap();
+    let _large_listening = large.http("0.0.0.0:4000").unwrap();
     println!("Servers Listeing on 4000")
 }

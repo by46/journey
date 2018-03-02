@@ -7,6 +7,7 @@ extern crate libc;
 
 pub mod example;
 pub mod advance;
+pub mod basic;
 #[cfg(test)]
 mod tests;
 

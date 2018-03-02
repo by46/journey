@@ -37,4 +37,6 @@ fn main() {
     journey::advance::city::demo();
     journey::advance::guarantee::demo();
     journey::advance::algorithm::demo();
+
+    journey::basic::demo();
 }

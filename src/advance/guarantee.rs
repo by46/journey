@@ -1,7 +1,17 @@
 use std::cell::Cell;
 use std::cell::RefCell;
+use std::fmt::Display;
+use std::borrow::Borrow;
 
 use example::common;
+
+fn foo<T: Borrow<i32> + Display>(a: T) {
+    println!("a is borrowed: {}", a)
+}
+
+fn foo2<T: AsRef<str> + Display>(a: T) {
+    println!("foo2 {}", a)
+}
 
 pub fn demo() {
     common::line();
@@ -23,4 +33,11 @@ pub fn demo() {
         mut_ref.push(5);
     }
     println!("{:?} ", i);
+
+    let mut i = 5;
+    foo(&i);
+    foo(&mut i);
+
+    let s = "hello".to_string();
+    foo2(s);
 }

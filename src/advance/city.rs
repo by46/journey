@@ -2,7 +2,6 @@ use std::env;
 use std::fs::File;
 
 use serde_json;
-use serde::Deserialize;
 use getopts;
 
 #[derive(Debug, Deserialize)]

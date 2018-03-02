@@ -42,4 +42,5 @@ pub fn demo() {
     chain.link_before(ResponseTime);
     chain.link_after(ResponseTime);
     Iron::new(chain).http("0.0.0.0:3000").unwrap();
+    println!("On Listening");
 }

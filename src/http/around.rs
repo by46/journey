@@ -43,8 +43,7 @@ impl<H: Handler> Handler for LoggerHandler<H> {
 impl AroundMiddleware for Logger {
     fn around(self, handler: Box<Handler>) -> Box<Handler> {
         Box::new(LoggerHandler {
-            logger: self,
-            handler: handler,
+            logger: self, handler,
         }) as Box<Handler>
     }
 }
@@ -54,9 +53,15 @@ fn hello_world(_: &mut Request) -> IronResult<Response> {
 }
 
 pub fn demo() {
+    let silent = Iron::new(Logger::new(LoggerMode::Silent)
+        .around(Box::new(hello_world)));
+    let tiny = Iron::new(Logger::new(LoggerMode::Tiny)
+        .around(Box::new(hello_world)));
     let large = Iron::new(Logger::new(LoggerMode::Large)
         .around(Box::new(hello_world)));
 
-    let _large_listening = large.http("0.0.0.0:4000").unwrap();
-    println!("Servers Listeing on 4000")
+    let _silent_listening = silent.http("0.0.0.0:4001").unwrap();
+    let _tiny_listening = tiny.http("0.0.0.0:4002").unwrap();
+    let _large_listening = large.http("0.0.0.0:4003").unwrap();
+    println!("Servers Listening on 4001,4002,4003")
 }

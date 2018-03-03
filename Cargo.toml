@@ -7,7 +7,6 @@ authors = ["benjamin yan <benjamin.c.yan@newegg.com>"]
 name= "journey"
 
 [dependencies]
-rand = "=0.3.22"
 getopts="=0.2.17"
 serde = "1.0"
 serde_derive = "1.0"
@@ -18,3 +17,4 @@ libc="0.2.0"
 
 iron = "0.6.0"
 time = "0.1.39"
+hyper = "0.11.21"

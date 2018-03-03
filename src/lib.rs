@@ -6,6 +6,8 @@ extern crate serde_json;
 extern crate libc;
 extern crate iron;
 extern crate time;
+#[macro_use]
+extern crate mime;
 
 
 pub mod example;

@@ -60,9 +60,9 @@ impl<'a> Person<'a> {
 }
 
 
-//fn diverges() -> ! {
-//    panic!("this function never returns!");
-//}
+fn diverges() -> ! {
+    panic!("this function never returns!");
+}
 
 
 // Rust 确保了对于任何给定的资源都正好（只）有一个绑定与之对应

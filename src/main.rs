@@ -2,11 +2,13 @@ extern crate journey;
 
 
 fn main() {
-    //    diverges();
-
-//    journey::example::demo();
-//    journey::advance::demo();
-//    journey::http::demo();
-    journey::basic::demo();
-//    journey::newegg::demo();
+    let mut names: Vec<fn()> = Vec::new();
+    names.push(journey::basic::demo);
+//    names.push(journey::example::demo);
+//    names.push(journey::advance::demo);
+//    names.push(journey::http::demo);
+    names.push(journey::newegg::demo);
+    for name in &mut names {
+        name()
+    }
 }

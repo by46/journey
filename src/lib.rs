@@ -12,6 +12,7 @@ extern crate hyper;
 extern crate futures;
 extern crate pretty_env_logger;
 extern crate tokio;
+extern crate bytes;
 
 pub mod example;
 pub mod advance;

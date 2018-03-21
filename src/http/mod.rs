@@ -6,6 +6,7 @@ pub mod content_type;
 pub mod hyper_demo;
 pub mod tokio2_demo;
 pub mod echo;
+pub mod connect;
 
 pub fn demo() {
     common::line();

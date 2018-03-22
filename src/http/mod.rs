@@ -19,5 +19,6 @@ pub fn demo() {
     //    content_type::demo();
     //    hyper_demo::demo();
     //    tokio2_demo::demo();
-    echo::demo();
+//    echo::demo();
+    connect::demo();
 }

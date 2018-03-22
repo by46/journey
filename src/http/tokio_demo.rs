@@ -12,7 +12,8 @@ pub fn demo() {
         println!("accept socket; address={:?}", socket.peer_addr().unwrap());
         let connection = io::write_all(socket, "hello world\n")
             .then(|res| {
-                println!("wrote message; success={:?}", res.is_ok())
+                println!("wrote message; success={:?}", res.is_ok());
+                Ok(())
             });
         tokio::spawn(connection);
         Ok(())

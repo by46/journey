@@ -17,9 +17,11 @@ libc="0.2.0"
 
 time = "0.1"
 futures="0.1"
+iron = "0.6.0"
+hyper = "0.11"
 pretty_env_logger="0.2.2"
 tokio="0.1"
 tokio-io="0.1"
 mime="*"
-hyper = "0.11"
-iron = "0.6.0"
+
+bytes="0.4"

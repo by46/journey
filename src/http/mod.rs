@@ -5,6 +5,9 @@ pub mod around;
 pub mod content_type;
 pub mod hyper_demo;
 pub mod tokio_demo;
+pub mod tokio2_demo;
+pub mod echo;
+pub mod connect;
 
 pub fn demo() {
     common::line();
@@ -12,5 +15,9 @@ pub fn demo() {
     //    around::demo();
     //    content_type::demo();
     //    hyper_demo::demo();
-    tokio_demo::demo();
+    //    tokio_demo::demo();
+    //    content_type::demo();
+    //    hyper_demo::demo();
+    //    tokio2_demo::demo();
+    echo::demo();
 }

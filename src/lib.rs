@@ -9,11 +9,13 @@ extern crate time;
 #[macro_use]
 extern crate mime;
 extern crate hyper;
+#[macro_use]
 extern crate futures;
 extern crate pretty_env_logger;
 extern crate tokio;
 extern crate bytes;
 extern crate tokio_io;
+extern crate tokio_core;
 
 pub mod example;
 pub mod advance;

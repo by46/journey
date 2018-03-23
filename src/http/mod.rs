@@ -8,6 +8,7 @@ pub mod tokio_demo;
 pub mod tokio2_demo;
 pub mod echo;
 pub mod connect;
+pub mod future_demo;
 
 pub fn demo() {
     common::line();
@@ -19,6 +20,7 @@ pub fn demo() {
     //    content_type::demo();
     //    hyper_demo::demo();
     //    tokio2_demo::demo();
-//    echo::demo();
-    connect::demo();
+    //    echo::demo();
+    //    connect::demo();
+    future_demo::demo();
 }

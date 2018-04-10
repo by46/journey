@@ -14,7 +14,7 @@ impl typemap::Key for ResponseTime {
 
 impl BeforeMiddleware for ResponseTime {
     fn before(&self, req: &mut Request) -> IronResult<()> {
-        req.extensions.insert(precise_time_ns());
+        req.extensions.insert::<ResponseTime>(precise_time_ns());
         Ok(())
     }
 }
@@ -27,7 +27,7 @@ impl AfterMiddleware for ResponseTime {
     }
 }
 
-fn hello(_: Request) -> IronResult<Response> {
+fn hello(_: &mut Request) -> IronResult<Response> {
     Ok(Response::with((iron::status::Ok, "hello world")))
 }
 
@@ -35,5 +35,5 @@ pub fn demo() {
     let mut chain = Chain::new(hello);
     chain.link_before(ResponseTime);
     chain.link_after(ResponseTime);
-    Iron::new(chain).http("localhost:3000").unwrap()
+    Iron::new(chain).http("localhost:3000").unwrap();
 }

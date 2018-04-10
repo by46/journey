@@ -18,8 +18,8 @@ fn variant2(_: &mut Request) -> IronResult<Response> {
 }
 
 fn variant3(_: &mut Request) -> IronResult<Response> {
-//    let content_type = mime!(Application/Json);
-//    Ok(Response::with((content_type, status::Ok, "{}")))
+    let content_type = mime!(Application/Json);
+    Ok(Response::with((content_type, status::Ok, "{}")))
 }
 
 fn variant4(_: &mut Request) -> IronResult<Response> {

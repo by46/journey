@@ -20,6 +20,8 @@ pub mod advance;
 pub mod basic;
 pub mod http;
 pub mod newegg;
+pub mod tokio_demo;
+pub mod api;
 #[cfg(test)]
 mod tests;
 

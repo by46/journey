@@ -3,10 +3,57 @@ use iron;
 use iron::prelude::*;
 use iron::BeforeMiddleware;
 use iron::AfterMiddleware;
+use iron::Handler;
 use iron::typemap;
+use iron::method::Method;
+use std::str::FromStr;
+use std::convert::AsRef;
 
 
 struct ResponseTime;
+
+struct App {}
+
+impl App {
+    fn new() -> Self {
+        App {}
+    }
+
+    fn options(&self, request: &mut Request) -> IronResult<Response> {
+        Ok(Response::with((iron::status::Ok, "")))
+    }
+
+    fn get(&self, request: &mut Request) -> IronResult<Response> {
+        Ok(match request.url.path().join("/").as_ref() {
+            "faq.htm" => Response::with((iron::status::Ok, "<!Newegg>")),
+            "version" => Response::with((iron::status::Ok, "0.0.1")),
+            _ => Response::with((iron::status::Ok, request.url.to_string())),
+        })
+    }
+
+    fn post(&self, request: &mut Request) -> IronResult<Response> {
+        Ok(Response::with((iron::status::Ok, "post file")))
+    }
+    fn put(&self, request: &mut Request) -> IronResult<Response> {
+        Ok(Response::with((iron::status::Ok, "put method")))
+    }
+    fn delete(&self, request: &mut Request) -> IronResult<Response> {
+        Ok(Response::with((iron::status::Ok, "delete method")))
+    }
+}
+
+impl Handler for App {
+    fn handle(&self, request: &mut Request) -> IronResult<Response> {
+        match request.method {
+            Method::Options => self.options(request),
+            Method::Get => self.get(request),
+            Method::Post => self.post(request),
+            Method::Put => self.put(request),
+            Method::Delete => self.delete(request),
+            _ => Ok(Response::with((iron::status::MethodNotAllowed, "")))
+        }
+    }
+}
 
 impl typemap::Key for ResponseTime {
     type Value = u64;
@@ -32,8 +79,6 @@ fn hello(_: &mut Request) -> IronResult<Response> {
 }
 
 pub fn demo() {
-    let mut chain = Chain::new(hello);
-    chain.link_before(ResponseTime);
-    chain.link_after(ResponseTime);
-    Iron::new(chain).http("localhost:3000").unwrap();
+    let app = App::new();
+    Iron::new(app).http("localhost:3000").unwrap();
 }

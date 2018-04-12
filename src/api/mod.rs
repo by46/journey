@@ -12,6 +12,8 @@ use iron::status::Accepted;
 use iron::mime::Mime;
 use iron::modifiers::Redirect;
 use iron::modifiers::RedirectRaw;
+use iron::headers::AccessControlAllowOrigin;
+use iron::modifiers::Header;
 
 struct ResponseTime;
 
@@ -36,7 +38,8 @@ impl App {
                 response.set_mut(mime!(Application/Css));
                 response.set_mut(String::from("hello world"));
                 response.set_mut(Redirect("http://localhost:3000/version".parse().unwrap()));
-                response
+                response.set_mut(RedirectRaw(String::from("http://localhost:3000/faq.html")));
+                response.set_mut(Header(AccessControlAllowOrigin::Any));
 
                 response
             }

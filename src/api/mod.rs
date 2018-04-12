@@ -8,7 +8,10 @@ use iron::typemap;
 use iron::method::Method;
 use std::str::FromStr;
 use std::convert::AsRef;
-
+use iron::status::Accepted;
+use iron::mime::Mime;
+use iron::modifiers::Redirect;
+use iron::modifiers::RedirectRaw;
 
 struct ResponseTime;
 
@@ -27,6 +30,16 @@ impl App {
         Ok(match request.url.path().join("/").as_ref() {
             "faq.htm" => Response::with((iron::status::Ok, "<!Newegg>")),
             "version" => Response::with((iron::status::Ok, "0.0.1")),
+            "time" => {
+                let mut response = Response::new();
+                response.set_mut(Accepted);
+                response.set_mut(mime!(Application/Css));
+                response.set_mut(String::from("hello world"));
+                response.set_mut(Redirect("http://localhost:3000/version".parse().unwrap()));
+                response
+
+                response
+            }
             _ => Response::with((iron::status::Ok, request.url.to_string())),
         })
     }

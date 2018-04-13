@@ -9,11 +9,13 @@ use iron::method::Method;
 use std::str::FromStr;
 use std::convert::AsRef;
 use iron::status::Accepted;
+use iron::status::Found;
 use iron::mime::Mime;
 use iron::modifiers::Redirect;
 use iron::modifiers::RedirectRaw;
 use iron::headers::AccessControlAllowOrigin;
 use iron::modifiers::Header;
+use std::path::Path;
 
 struct ResponseTime;
 
@@ -41,6 +43,14 @@ impl App {
                 response.set_mut(RedirectRaw(String::from("http://localhost:3000/faq.html")));
                 response.set_mut(Header(AccessControlAllowOrigin::Any));
 
+                response
+            }
+            "types" => {
+                let mut response = Response::new();
+                let name = String::from("population.json");
+                let path = Path::new(&name);
+                response.set_mut(Found);
+                response.set_mut(path);
                 response
             }
             _ => Response::with((iron::status::Ok, request.url.to_string())),

@@ -24,6 +24,7 @@ pub mod http;
 pub mod newegg;
 pub mod tokio_demo;
 pub mod api;
+pub mod fs_demo;
 #[cfg(test)]
 mod tests;
 

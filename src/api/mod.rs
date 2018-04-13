@@ -5,14 +5,19 @@ use iron::BeforeMiddleware;
 use iron::AfterMiddleware;
 use iron::Handler;
 use iron::typemap;
+use iron::TypeMap;
 use iron::method::Method;
 use std::str::FromStr;
 use std::convert::AsRef;
 use iron::status::Accepted;
 use iron::status::Found;
 use iron::mime::Mime;
+use iron::mime::TopLevel;
+use iron::mime::SubLevel;
 use iron::modifiers::Redirect;
 use iron::modifiers::RedirectRaw;
+use iron::headers;
+use iron::headers::qitem;
 use iron::headers::AccessControlAllowOrigin;
 use iron::modifiers::Header;
 use std::path::Path;
@@ -38,6 +43,12 @@ impl App {
                 let mut response = Response::new();
                 response.set_mut(Accepted);
                 response.set_mut(mime!(Application/Css));
+                response.set_mut(Header(headers::Cookie(vec![String::from("hello")])));
+                // accept
+                let value = headers::Accept(vec![
+                qitem(Mime(TopLevel::Image, SubLevel::Html, vec![]))
+                ]);
+                response.set_mut(Header(value));
                 response.set_mut(String::from("hello world"));
                 response.set_mut(Redirect("http://localhost:3000/version".parse().unwrap()));
                 response.set_mut(RedirectRaw(String::from("http://localhost:3000/faq.html")));

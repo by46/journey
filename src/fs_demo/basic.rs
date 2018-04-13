@@ -39,7 +39,9 @@ fn open_by_open_options() -> std::io::Result<()> {
 fn meta_demo() -> std::io::Result<()> {
     let mut file = File::open("Cargo.lock")?;
     let meta = file.metadata()?;
-    println!("meta {:?} {} {}", meta, meta.is_dir(), meta.is_file());
+    println!("meta {:?}", meta);
+    println!("is dir {} {}", meta.is_dir(), meta.is_file());
+    println!("file type {:?}", meta.file_type());
     Ok(())
 }
 

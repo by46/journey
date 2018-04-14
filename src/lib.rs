@@ -4,6 +4,7 @@ extern crate serde_derive;
 extern crate serde;
 extern crate serde_json;
 extern crate libc;
+#[macro_use]
 extern crate iron;
 extern crate time;
 #[macro_use]

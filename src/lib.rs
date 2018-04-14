@@ -8,6 +8,7 @@ extern crate iron;
 extern crate time;
 #[macro_use]
 extern crate mime;
+#[macro_use]
 extern crate hyper;
 #[macro_use]
 extern crate futures;

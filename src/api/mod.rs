@@ -25,6 +25,9 @@ use std::path::Path;
 struct ResponseTime;
 
 struct App {}
+header! {
+    (XCabinetName, "X-Cabinet-Name") => [String]
+}
 
 impl App {
     fn new() -> Self {
@@ -40,16 +43,29 @@ impl App {
             "faq.htm" => Response::with((iron::status::Ok, "<!Newegg>")),
             "version" => Response::with((iron::status::Ok, "0.0.1")),
             "time" => {
+                println!("{:?}", request);
                 let mut response = Response::new();
                 response.set_mut(Accepted);
                 response.set_mut(mime!(Application/Css));
                 response.set_mut(Header(headers::Cookie(vec![String::from("hello")])));
                 // accept
                 let value = headers::Accept(vec![
-                qitem(Mime(TopLevel::Image, SubLevel::Html, vec![]))
+                    qitem(Mime(TopLevel::Image, SubLevel::Html, vec![]))
                 ]);
                 response.set_mut(Header(value));
+
+                // host
+                response.set_mut(Header(headers::Host {
+                    hostname: "www.newegg.com".to_owned(),
+                    port: Some(80)
+                }));
                 response.set_mut(String::from("hello world"));
+
+                // server
+                response.set_mut(Header(headers::Server("engine/0.1.23".to_owned())));
+
+                // X-Cabinet-Name
+                response.set_mut(Header(XCabinetName("benjamin".to_owned())));
                 response.set_mut(Redirect("http://localhost:3000/version".parse().unwrap()));
                 response.set_mut(RedirectRaw(String::from("http://localhost:3000/faq.html")));
                 response.set_mut(Header(AccessControlAllowOrigin::Any));

@@ -13,3 +13,5 @@ Cargo.lock
 
 .idea
 *.log
+foo.txt
+foo2.txt

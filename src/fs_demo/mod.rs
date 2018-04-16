@@ -1,5 +1,10 @@
+use example::common;
+
 mod basic;
+mod reading;
 
 pub fn demo() {
-    basic::demo()
+    common::line();
+    basic::demo();
+    reading::demo();
 }
